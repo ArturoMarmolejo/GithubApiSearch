@@ -1,4 +1,7 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css";
+@import "./ListRepositoryStyle.css";
+@import "./RepositoryStyle.css";
+
 
 * {
   box-sizing: border-box;

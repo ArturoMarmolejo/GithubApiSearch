@@ -1,0 +1,97 @@
+
+.post-repositorie {
+  width: 100%;
+  padding: 20px;
+  background: #ffff;
+  border-bottom: 2px solid #fbf2f2;
+}
+
+.post-repositorie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-repositorie-header span {
+  color: #959595;
+  font-size: 14px;
+}
+
+.post-repositorie-header__language {
+  display: flex;
+  align-items: center;
+  color: #031b4e;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.post-repositorie-body {
+  margin-top: 15px;
+}
+
+.post-repositorie-body a {
+  font-size: 20px;
+  color: #031b4e;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.post-repositorie-body p {
+  font-size: 15px;
+  color: #757575;
+}
+
+.post-repositorie-body__tags {
+  display: flex;
+  margin-top: 10px;
+  gap: 5px;
+}
+
+.post-repositorie-body__tags span {
+  color: #716b6b;
+  background: #e4e4e3;
+  border-radius: 20px;
+  font-size: 12px;
+  padding: 5px 12px;
+}
+
+.post-repositorie-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-repositorie-footer_stats {
+  display: flex;
+  gap: 20px;
+}
+
+.post-repositorie-footer_stats .stat-content {
+  display: flex;
+  gap: 5px;
+  color: #031b4e;
+  align-items: center;
+}
+
+.post-repositorie-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post-repositorie-user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+
+.user-info .name {
+  color: #4d4b4b;
+  font-size: 14px;
+}
+
+.user-info .proyect-name {
+  color: #959595;
+  font-size: 14px;
+}
