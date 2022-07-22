@@ -9,6 +9,19 @@
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+  background: #f2f2f2;
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #f2f2f2;
+  width: 12px;
+}
+::-webkit-scrollbar-thumb {
+  width: 12px;
+  background: #343434;
+}
+
 html,
 body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -21,11 +34,20 @@ a {
 }
 
 .header {
+  z-index: 10;
+  transition: all 0.3s;
   background-color: #F5F871;
   height: 75px;
   display: flex;
   width: 100%;
   border-bottom: 4px solid #343434;
+}
+
+.header.active {
+  background-color: #FFF;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 }
 
 .wrapper {
@@ -44,4 +66,43 @@ a {
   left: 0px;
   top: 0px;
   background-color: #F5F871
+}
+
+.input-search-hero {
+  width: 500px;
+  margin-top: 20px;
+}
+
+.input-search {
+  width: 100%;
+  background: #FFF4F4;
+  height: 50px;
+}
+
+.input-search__field {
+  width: calc(100% - 150px);
+  padding: 0 20px;
+  background: #FFF4F4;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  height: 50px;
+}
+
+.input-search__button {
+  width: 150px !important;
+  color: #fff !important;
+  border: none !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  background: #031B4E !important;
+  height: 50px !important;
+  border-radius: 0 !important;
+}
+
+.result-title {
+  margin: 30px 0;
+  font-size: 25px;
+  color: #3F3D56;
+  font-weight: bold;
 }

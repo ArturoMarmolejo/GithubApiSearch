@@ -1,18 +1,33 @@
 
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import zebrandslogo from "../../public/assets/images/zebrands.svg"
 
 export const Header = () => {
-  //flex, align items center, justify content between
+  const [fix, setFix] = useState<boolean>(false)
+
+  useEffect(() => {
+    document.addEventListener('scroll', () => {
+      if (window.scrollY > 180) {
+        setFix(true)
+      }
+      else if (window.scrollY < 180) {
+        setFix(false)
+      }
+    })
+  }, [])
 
   return (
-    <header className="header">
+    <header className={!fix ? "header" : "header active"}>
       <nav className="container is-fluid is-flex is-align-items-center is-justify-content-space-between">
         <picture>
-          <Image
-            src={zebrandslogo}
-            alt={'zebrands'}
-          />
+          <Link href="/">
+            <Image
+              src={zebrandslogo}
+              alt={'zebrands'}
+            />
+          </Link>
         </picture>
         <div className="header-right-section is-flex is-align-items-center is-flex-direction-row-reverse">
           <button className="button is-dark">See More</button>

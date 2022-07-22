@@ -33,7 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <>
       {
-        totalButtons && (
+        total >= 1 && totalButtons && (
           <form onSubmit={onSubmit} className="form-pagination">
             <button disabled={page - 1 < 1 || loading} onClick={() => changePage(page - 1)}>
               <FontAwesomeIcon icon={faAngleLeft} />
