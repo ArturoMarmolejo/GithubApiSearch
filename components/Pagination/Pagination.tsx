@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 interface PaginationProps {
   total: number;
+  loading: boolean;
   totalButtons: number;
   onChange: (page: number) => void;
 }
@@ -9,7 +13,8 @@ interface PaginationProps {
 const Pagination: React.FC<PaginationProps> = ({
   total,
   onChange,
-  totalButtons = 6
+  totalButtons,
+  loading,
 }) => {
   const buttonsPage = [...Array(totalButtons)];
   const centerPage = Math.floor(totalButtons / 2);
@@ -26,34 +31,41 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <button disabled={page - 1 < 1} onClick={() => changePage(page - 1)}>
-        {"<"}
-      </button>
-      {buttonsPage.map((_, index) => {
-        const buttonPage =
-          page > centerPage ? page - (centerPage - index) : page + index;
-
-        if (buttonPage > 0 && buttonPage < total) {
-          return (
-            <button
-              className={
-                page === buttonPage
-                  ? "active button-pagination"
-                  : "button-pagination"
-              }
-              key={index}
-              onClick={() => changePage(buttonPage)}
-            >
-              {buttonPage}
+    <>
+      {
+        totalButtons && (
+          <form onSubmit={onSubmit} className="form-pagination">
+            <button disabled={page - 1 < 1 || loading} onClick={() => changePage(page - 1)}>
+              <FontAwesomeIcon icon={faAngleLeft} />
             </button>
-          );
-        }
-      })}
-      <button disabled={page + 1 > total} onClick={() => changePage(page + 1)}>
-        {">"}
-      </button>
-    </form>
+            {buttonsPage.map((_, index) => {
+              const buttonPage =
+                page > centerPage ? page - (centerPage - index) : page + index;
+
+              if (buttonPage > 0 && buttonPage < total) {
+                return (
+                  <button
+                    className={
+                      page === buttonPage
+                        ? loading ? "active button-pagination is-loading" : "active button-pagination"
+                        : "button-pagination"
+                    }
+                    disabled={loading}
+                    key={index}
+                    onClick={() => changePage(buttonPage)}
+                  >
+                    {buttonPage}
+                  </button>
+                );
+              }
+            })}
+            <button disabled={page + 1 > total || loading} onClick={() => changePage(page + 1)}>
+              <FontAwesomeIcon icon={faAngleRight} />
+            </button>
+          </form>
+        )
+      }
+    </>
   );
 };
 

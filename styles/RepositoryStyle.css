@@ -43,6 +43,7 @@
 
 .post-repositorie-body__tags {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 10px;
   gap: 5px;
 }
@@ -80,7 +81,7 @@
   gap: 10px;
 }
 
-.post-repositorie-user img {
+.post-repositorie-user a img {
   width: 40px;
   height: 40px;
   border-radius: 100%;
