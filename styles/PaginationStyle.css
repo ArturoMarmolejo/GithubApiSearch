@@ -1,0 +1,20 @@
+.form-pagination {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  gap: 5px
+}
+
+.form-pagination button {
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.form-pagination button.active {
+  background: #E9A14E;
+  color: white;
+  font-weight: bold;
+}

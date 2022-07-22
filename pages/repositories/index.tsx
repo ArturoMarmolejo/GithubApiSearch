@@ -1,188 +1,67 @@
-import { NextPage } from "next";
+import { findRepositories, getRepositories } from "../../api/repositories";
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
+import ListRepository from "../../components/ListRepository/ListRepository";
+import { MAX_BUTTON_PAGINATION, PER_PAGE } from "../../api/constants";
+import Pagination from "../../components/Pagination/Pagination";
+import { useState } from "react";
+import { iRepository } from "../../api/types/repository";
+import getTopic from "../../utils/getTopic";
 
-const Repositories: NextPage = () => {
+export const getServerSideProps: GetServerSideProps = async (): Promise<any> => {
+  try {
+    const response = await findRepositories({ q: getTopic(), page: 1, per_page: PER_PAGE })
+    const total_page = response.total_count / 10;
+
+    return {
+      props: {
+        repositories: response.items,
+        total_page: total_page > 100 ? 100 : total_page,
+      }
+    };
+  } catch (error) {
+    return {
+      props: {
+        repositories: [],
+        total_page: 0,
+      }
+    };
+  }
+};
+
+type RepositoriesPageProps = InferGetServerSidePropsType<typeof getServerSideProps>
+
+const Repositories: NextPage = ({ repositories: listRepositories, total_page }: RepositoriesPageProps) => {
+  const [repositories, setRepositories] = useState<iRepository[]>(listRepositories);
+  const [total, setTotal] = useState<number>(total_page);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const changePagination = async (page: number) => {
+    try {
+      setLoading(true)
+      const response = await findRepositories({ q: getTopic(), page, per_page: PER_PAGE });
+
+      setTotal(response.total_count);
+      setRepositories(response.items);
+    } catch (error) {
+      /* show error */
+      console.error(error);
+    } finally {
+      setLoading(false)
+      window.scroll(0, 0);
+    }
+  }
 
   return (
-    <section className="posts-repositories">
-      <article className="post-repositorie">
-        <div className="post-repositorie-header">
-          <span>skathuria29/react-weather-app</span>
-          <div className="post-repositorie-header__language">
-            <i className="fa-solid fa-bookmark"></i>
-            <p>JavaScript</p>
-          </div>
-        </div>
-        <div className="post-repositorie-body">
-          <a href="#">react-weather-app</a>
-          <p>A simple weather search app using React.</p>
-          <div className="post-repositorie-body__tags">
-            <span>Ui Design</span>
-            <span>Html</span>
-            <span>CSS</span>
-            <span>reactapp</span>
-          </div>
-        </div>
-        <div className="post-repositorie-footer">
-          <div className="post-repositorie-footer_stats">
-            <div className="stat-content">
-              <i className="fa-solid fa-eye"></i>
-              <p>12</p>
-            </div>
-
-            <div className="stat-content">
-              <i className="fa-solid fa-star"></i>
-              <p>12</p>
-            </div>
-
-            <div className="stat-content">
-              <i className="fa-solid fa-code-branch"></i>
-              <p>master</p>
-            </div>
-          </div>
-          <div className="post-repositorie-user">
-            <img src="https://avatars.githubusercontent.com/u/72000?v=4" />
-            <div className="user-info">
-              <p className="name">skathuria29</p>
-              <p className="proyect-name">react-weather-app</p>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article className="post-repositorie">
-        <div className="post-repositorie-header">
-          <span>skathuria29/react-weather-app</span>
-          <div className="post-repositorie-header__language">
-            <i className="fa-solid fa-bookmark"></i>
-            <p>JavaScript</p>
-          </div>
-        </div>
-        <div className="post-repositorie-body">
-          <a href="#">react-weather-app</a>
-          <p>A simple weather search app using React.</p>
-          <div className="post-repositorie-body__tags">
-            <span>Ui Design</span>
-            <span>Html</span>
-            <span>CSS</span>
-            <span>reactapp</span>
-          </div>
-        </div>
-        <div className="post-repositorie-footer">
-          <div className="post-repositorie-footer_stats">
-            <div className="stat-content">
-              <i className="fa-solid fa-eye"></i>
-              <p>12</p>
-            </div>
-
-            <div className="stat-content">
-              <i className="fa-solid fa-star"></i>
-              <p>12</p>
-            </div>
-
-            <div className="stat-content">
-              <i className="fa-solid fa-code-branch"></i>
-              <p>master</p>
-            </div>
-          </div>
-          <div className="post-repositorie-user">
-            <img src="https://avatars.githubusercontent.com/u/72000?v=4" />
-            <div className="user-info">
-              <p className="name">skathuria29</p>
-              <p className="proyect-name">react-weather-app</p>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article className="post-repositorie">
-        <div className="post-repositorie-header">
-          <span>skathuria29/react-weather-app</span>
-          <div className="post-repositorie-header__language">
-            <i className="fa-solid fa-bookmark"></i>
-            <p>JavaScript</p>
-          </div>
-        </div>
-        <div className="post-repositorie-body">
-          <a href="#">react-weather-app</a>
-          <p>A simple weather search app using React.</p>
-          <div className="post-repositorie-body__tags">
-            <span>Ui Design</span>
-            <span>Html</span>
-            <span>CSS</span>
-            <span>reactapp</span>
-          </div>
-        </div>
-        <div className="post-repositorie-footer">
-          <div className="post-repositorie-footer_stats">
-            <div className="stat-content">
-              <i className="fa-solid fa-eye"></i>
-              <p>12</p>
-            </div>
-
-            <div className="stat-content">
-              <i className="fa-solid fa-star"></i>
-              <p>12</p>
-            </div>
-
-            <div className="stat-content">
-              <i className="fa-solid fa-code-branch"></i>
-              <p>master</p>
-            </div>
-          </div>
-          <div className="post-repositorie-user">
-            <img src="https://avatars.githubusercontent.com/u/72000?v=4" />
-            <div className="user-info">
-              <p className="name">skathuria29</p>
-              <p className="proyect-name">react-weather-app</p>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article className="post-repositorie">
-        <div className="post-repositorie-header">
-          <span>skathuria29/react-weather-app</span>
-          <div className="post-repositorie-header__language">
-            <i className="fa-solid fa-bookmark"></i>
-            <p>JavaScript</p>
-          </div>
-        </div>
-        <div className="post-repositorie-body">
-          <a href="#">react-weather-app</a>
-          <p>A simple weather search app using React.</p>
-          <div className="post-repositorie-body__tags">
-            <span>Ui Design</span>
-            <span>Html</span>
-            <span>CSS</span>
-            <span>reactapp</span>
-          </div>
-        </div>
-        <div className="post-repositorie-footer">
-          <div className="post-repositorie-footer_stats">
-            <div className="stat-content">
-              <i className="fa-solid fa-eye"></i>
-              <p>12</p>
-            </div>
-
-            <div className="stat-content">
-              <i className="fa-solid fa-star"></i>
-              <p>12</p>
-            </div>
-
-            <div className="stat-content">
-              <i className="fa-solid fa-code-branch"></i>
-              <p>master</p>
-            </div>
-          </div>
-          <div className="post-repositorie-user">
-            <img src="https://avatars.githubusercontent.com/u/72000?v=4" />
-            <div className="user-info">
-              <p className="name">skathuria29</p>
-              <p className="proyect-name">react-weather-app</p>
-            </div>
-          </div>
-        </div>
-      </article>
-    </section>
+    <main className="posts-repositories wrapper">
+      <ListRepository repositories={repositories} />
+      <Pagination
+        total={total}
+        loading={loading}
+        totalButtons={MAX_BUTTON_PAGINATION}
+        onChange={changePagination}
+      />
+    </main>
   )
-
 }
 
 export default Repositories;

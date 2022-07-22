@@ -1,13 +1,8 @@
-import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import "bulma/css/bulma.min.css";
-import { Router } from "next/router";
+import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Header } from "../layouts/Header/Header";
+import styles from "../styles/Home.module.css";
 import { Hero } from "../layouts/Hero/Hero";
 
 const Home: NextPage = () => {
