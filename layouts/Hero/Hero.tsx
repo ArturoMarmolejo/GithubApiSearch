@@ -21,7 +21,7 @@ export const Hero = () => {
         <p className="has-text-centered is-size-4 has-text-weight-normal">The future of code is in the cloud, not your local copy. </p>
         <div className="input-search-hero">
           <form className="input-search" onSubmit={onSubmit}>
-            <input className="input-search__field" type="text" onChange={(e) => setSearch(e.target.value)} placeholder="React, Anular, Vue..."></input>
+            <input className="input-search__field" type="text" onChange={(e) => setSearch(e.target.value)} placeholder="React, Angular, Vue..."></input>
             <button className={loading ? "button input-search__button  is-loading" : "button input-search__button"}>Search</button>
           </form>
         </div>

@@ -57,7 +57,7 @@ const Users: NextPage = () => {
     <main className="posts-repositories wrapper">
       <div>
         <form className="input-search" onSubmit={onSubmit}>
-          <input value={search} className="input-search__field" type="text" onChange={(e) => setSearch(e.target.value)} placeholder="React, Anular, Vue..."></input>
+          <input value={search} className="input-search__field" type="text" onChange={(e) => setSearch(e.target.value)} placeholder="React, Angular, Vue..."></input>
           <button className={loading ? "button input-search__button  is-loading" : "button input-search__button"}>Search</button>
         </form>
         <p className="result-title">{totalCount} repository results</p>
