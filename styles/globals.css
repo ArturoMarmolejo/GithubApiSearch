@@ -1,8 +1,26 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css";
 @import "./RepositoryStyle.css";
+@import "./UserStyle.css";
 @import "./PaginationStyle.css";
 
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), local("Inter-Medium"),
+    url("/assets/fonts/Inter-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), local("Inter-Bold"),
+    url("/assets/fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
 * {
+  font-family: "Inter", sans-serif !important;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -105,4 +123,8 @@ a {
   font-size: 25px;
   color: #3F3D56;
   font-weight: bold;
+}
+
+.logo-header {
+  cursor: pointer;
 }

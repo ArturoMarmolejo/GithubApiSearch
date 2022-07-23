@@ -1,4 +1,4 @@
-import { findRepositories, getRepositories } from "../../api/repositories";
+import { findRepositories } from "../../api/repositories";
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 import ListRepository from "../../components/ListRepository/ListRepository";
 import { MAX_BUTTON_PAGINATION, PER_PAGE } from "../../api/constants";
